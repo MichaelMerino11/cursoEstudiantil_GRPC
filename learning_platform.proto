@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package learning;
+
+service LearningPlatform {
+    // Servicios CRUD para Cursos
+    rpc CrearCurso (Curso) returns (Respuesta);
+    rpc ObtenerCurso (ID) returns (Curso);
+    rpc ActualizarCurso (Curso) returns (Respuesta);
+    rpc EliminarCurso (ID) returns (Respuesta);
+
+    // Servicios CRUD para Estudiantes
+    rpc CrearEstudiante (Estudiante) returns (Respuesta);
+    rpc ObtenerEstudiante (ID) returns (Estudiante);
+    rpc ActualizarEstudiante (Estudiante) returns (Respuesta);
+    rpc EliminarEstudiante (ID) returns (Respuesta);
+}
+
+message Curso {
+    int32 id = 1;
+    string nombre = 2;
+    string descripcion = 3;
+    string fecha_inicio = 4;
+    string fecha_fin = 5;
+}
+
+message Estudiante {
+    int32 id = 1;
+    string nombre = 2;
+    string correo = 3;
+    repeated int32 cursos_inscritos = 4;
+}
+
+message ID {
+    int32 id = 1;
+}
+
+message Respuesta {
+    bool success = 1;
+    string message = 2;
+}
